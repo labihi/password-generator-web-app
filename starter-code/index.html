@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="./assets/favicon-32x32.png"
+        />
+        <link rel="stylesheet" href="./styles.css" />
+        <title>Frontend Mentor | Password generator app</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header text-light-grey">Password Generator</div>
+            <div class="password-display text-almost-white">PTx1f5DaFX</div>
+            <div class="password-settings text-almost-white">
+                <div class="length-container">
+                    <div class="character-count-header">
+                        <p>Character Length</p>
+                        <p id="character-count" class="text-neon-green">16</p>
+                    </div>
+                    <input
+                        type="range"
+                        min="8"
+                        max="128"
+                        value="16"
+                        class="slider"
+                        id="myRange"
+                    />
+                </div>
+                <div class="checkboxes-container">
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="uppercase"
+                            name="uppercase"
+                            value="UPPERCASE"
+                        />
+                        <label for="uppercase">
+                            Include Uppercase Letters</label
+                        >
+                    </div>
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="lowercase"
+                            name="lowercase"
+                            value="LOWERCASE"
+                        />
+                        <label for="lowercase">
+                            Include Lowercase Letters</label
+                        >
+                    </div>
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="numbers"
+                            name="numbers"
+                            value="NUMBERS"
+                        />
+                        <label for="demoCheckbox3">Include Numbers</label>
+                    </div>
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="symbols"
+                            name="symbols"
+                            value="SYMBOLS"
+                        />
+                        <label for="symbols">Include Symbols</label>
+                    </div>
+                </div>
+                <div class="strength-container">
+                    <p>STRENGTH</p>
+                    <div class="bar-value-container">
+                        <div class="bar-value">MEDIUM</div>
+                        <div class="strength-bar-container">
+                            <div class="strength-bar strength-bar-yellow"></div>
+                            <div class="strength-bar strength-bar-yellow"></div>
+                            <div class="strength-bar strength-bar-empty"></div>
+                            <div class="strength-bar strength-bar-empty"></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button class="generate-button font-body">
+                        GENERATE
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="1em"
+                            height="1em"
+                            preserveAspectRatio="xMidYMid meet"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                fill="currentColor"
+                                d="m12 20l-1.425-1.4l5.6-5.6H4v-2h12.175l-5.6-5.6L12 4l8 8Z"
+                            />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
