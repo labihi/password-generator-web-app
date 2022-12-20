@@ -204,3 +204,6 @@ checkboxes.forEach((checkbox) => {
 generateButton.disabled = true;
 generateButton.classList.add("disabled");
 passwordLengthValue.textContent = passwordLengthSlider.value;
+
+// TODO: Add the background color to the slider when the value is different from 0
+// TODO: Change the style of the password text when the password is generated | or change the default style when not generated
