@@ -11,83 +11,122 @@
             href="./assets/favicon-32x32.png"
         />
         <link rel="stylesheet" href="./styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+            integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <link rel="stylesheet" href="./slider.css" />
+        <link rel="stylesheet" href="./checkbox.css" />
         <title>Frontend Mentor | Password generator app</title>
     </head>
     <body>
         <div class="container">
             <div class="header text-light-grey">Password Generator</div>
-            <div class="password-display text-almost-white">PTx1f5DaFX</div>
+            <div class="password-display text-almost-white">
+                <div id="password-text"><span>PTx1f5DaFX</span></div>
+                <div>
+                    <i
+                        id="copy-button"
+                        class="far fa-copy text-neon-green copy-icon"
+                    ></i>
+                </div>
+            </div>
             <div class="password-settings text-almost-white">
                 <div class="length-container">
                     <div class="character-count-header">
                         <p>Character Length</p>
-                        <p id="character-count" class="text-neon-green">16</p>
+                        <p
+                            id="password-length-value"
+                            class="text-neon-green"
+                        ></p>
                     </div>
                     <input
                         type="range"
-                        min="8"
+                        min="0"
                         max="128"
-                        value="16"
+                        value="0"
                         class="slider"
-                        id="myRange"
+                        id="password-length-slider"
                     />
                 </div>
                 <div class="checkboxes-container">
                     <div>
-                        <input
-                            type="checkbox"
-                            id="uppercase"
-                            name="uppercase"
-                            value="UPPERCASE"
-                        />
-                        <label for="uppercase">
-                            Include Uppercase Letters</label
-                        >
+                        <label class="checkbox-container"
+                            >Include Uppercase Letters
+                            <input
+                                type="checkbox"
+                                checked="checked"
+                                class="checkbox"
+                                id="uppercase"
+                                name="uppercase"
+                                value="UPPERCASE"
+                            />
+                            <span class="checkmark"></span>
+                        </label>
                     </div>
                     <div>
-                        <input
-                            type="checkbox"
-                            id="lowercase"
-                            name="lowercase"
-                            value="LOWERCASE"
-                        />
-                        <label for="lowercase">
-                            Include Lowercase Letters</label
-                        >
+                        <label class="checkbox-container"
+                            >Include Lowercase Letters
+                            <input
+                                type="checkbox"
+                                checked="checked"
+                                class="checkbox"
+                                id="lowercase"
+                                name="lowercase"
+                                value="LOWERCASE"
+                            />
+                            <span class="checkmark"></span>
+                        </label>
                     </div>
                     <div>
-                        <input
-                            type="checkbox"
-                            id="numbers"
-                            name="numbers"
-                            value="NUMBERS"
-                        />
-                        <label for="demoCheckbox3">Include Numbers</label>
+                        <label class="checkbox-container"
+                            >Include Numbers
+                            <input
+                                type="checkbox"
+                                checked="checked"
+                                class="checkbox"
+                                id="numbers"
+                                name="numbers"
+                                value="NUMBERS"
+                            />
+                            <span class="checkmark"></span>
+                        </label>
                     </div>
                     <div>
-                        <input
-                            type="checkbox"
-                            id="symbols"
-                            name="symbols"
-                            value="SYMBOLS"
-                        />
-                        <label for="symbols">Include Symbols</label>
+                        <label class="checkbox-container"
+                            >Include Symbols
+                            <input
+                                type="checkbox"
+                                checked="checked"
+                                class="checkbox"
+                                id="symbols"
+                                name="symbols"
+                                value="SYMBOLS"
+                            />
+                            <span class="checkmark"></span>
+                        </label>
                     </div>
                 </div>
                 <div class="strength-container">
                     <p>STRENGTH</p>
                     <div class="bar-value-container">
-                        <div class="bar-value">MEDIUM</div>
+                        <div id="bar-value" class="bar-value"></div>
                         <div class="strength-bar-container">
-                            <div class="strength-bar strength-bar-yellow"></div>
-                            <div class="strength-bar strength-bar-yellow"></div>
+                            <div class="strength-bar strength-bar-empty"></div>
+                            <div class="strength-bar strength-bar-empty"></div>
                             <div class="strength-bar strength-bar-empty"></div>
                             <div class="strength-bar strength-bar-empty"></div>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <button class="generate-button font-body">
+                    <button
+                        class="generate-button font-body"
+                        id="generate-button"
+                    >
                         GENERATE
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -105,5 +144,7 @@
                 </div>
             </div>
         </div>
+
+        <script src="main.js"></script>
     </body>
 </html>
