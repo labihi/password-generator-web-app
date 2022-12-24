@@ -36,18 +36,16 @@ const resetBar = () => {
     });
 };
 
-const generateSecurityBar = () => {
-    const length = Number(passwordLengthValue.textContent);
-
+const generateSecurityBar = (
+    options = {
+        uppercase,
+        lowercase,
+        numbers,
+        symbols,
+    },
+    length
+) => {
     let totalOptions = 0;
-
-    const options = {
-        uppercase: checkBoxUppercase.checked,
-        lowercase: checkBoxLowercase.checked,
-        numbers: checkBoxNumbers.checked,
-        symbols: checkBoxSymbols.checked,
-    };
-
     //  Get the total number of enabled options
     Object.keys(options).forEach((key) => {
         if (options[key]) totalOptions++;
@@ -82,22 +80,20 @@ const getRandomCharFromString = (str) =>
     str.charAt(Math.floor(Math.random() * str.length));
 
 //  Generate a random password with the given length and options
-const generatePassword = () => {
+const generatePassword = (
+    options = {
+        length,
+        uppercase,
+        lowercase,
+        numbers,
+        symbols,
+    }
+) => {
     // Get the options from the checkboxes
-    const options = {
-        length: Number(passwordLengthValue.textContent),
-        uppercase: checkBoxUppercase.checked,
-        lowercase: checkBoxLowercase.checked,
-        numbers: checkBoxNumbers.checked,
-        symbols: checkBoxSymbols.checked,
-    };
-
-    console.log(options);
 
     let pwd = "";
 
     for (let i = 0; i < options.length; i++) {
-        console.log("loop");
         if (
             options.lowercase &&
             options.uppercase &&
@@ -121,7 +117,6 @@ const generatePassword = () => {
 
     // Display the password
     document.querySelector("#password-text").textContent = pwd;
-    console.log(pwd);
 };
 
 passwordLengthSlider.addEventListener("input", (event) => {
@@ -129,13 +124,22 @@ passwordLengthSlider.addEventListener("input", (event) => {
 });
 
 generateButton.addEventListener("click", (event) => {
-    generatePassword();
-    generateSecurityBar();
+    const length = Number(passwordLengthValue.textContent);
+
+    const options = {
+        uppercase: checkBoxUppercase.checked,
+        lowercase: checkBoxLowercase.checked,
+        numbers: checkBoxNumbers.checked,
+        symbols: checkBoxSymbols.checked,
+    };
+
+    generatePassword({ length, ...options });
+    generateSecurityBar(options, length);
 });
 
 // Add the event listener to the body
 document.body.addEventListener("change", (event) => {
-    //enable the generate button if at least one checkbox is checked
+    // Enable the generate button if at least one checkbox is checked
     generateButton.disabled = true;
     generateButton.classList.add("disabled");
 
@@ -148,7 +152,6 @@ document.body.addEventListener("change", (event) => {
             generateButton.classList.remove("disabled");
         }
     });
-    //disable the generate button if no checkbox is checked
 });
 
 checkboxes.forEach((checkbox) => {
