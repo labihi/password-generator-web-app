@@ -26,34 +26,7 @@ copyButton.addEventListener("click", (event) => {
     navigator.clipboard.writeText(passwordTextEl.textContent);
 });
 
-const generateSecurityBar = () => {
-    const options = {
-        length: Number(passwordLengthValue.textContent),
-        uppercase: checkBoxUppercase.checked,
-        lowercase: checkBoxLowercase.checked,
-        numbers: checkBoxNumbers.checked,
-        symbols: checkBoxSymbols.checked,
-    };
-
-    let totalOptions = 0;
-
-    if (options.uppercase) {
-        totalOptions++;
-    }
-    if (options.lowercase) {
-        totalOptions++;
-    }
-    if (options.numbers) {
-        totalOptions++;
-    }
-    if (options.symbols) {
-        totalOptions++;
-    }
-
-    if (totalOptions === 0) {
-        barValue.textContent = "NO OPTIONS SELECTED";
-    }
-
+const resetBar = () => {
     strengthBars.forEach((el) => {
         el.classList.remove("bg-red");
         el.classList.remove("bg-orange");
@@ -61,41 +34,47 @@ const generateSecurityBar = () => {
         el.classList.remove("bg-green");
         el.classList.add("strength-bar-empty");
     });
+};
 
-    if (totalOptions === 1) {
-        barValue.textContent = "TOO WEAK!";
-        console.log(strengthBars[0]);
-        strengthBars[0].classList.remove("strength-bar-empty");
-        strengthBars[0].classList.add("bg-red");
-    }
+const generateSecurityBar = () => {
+    const length = Number(passwordLengthValue.textContent);
 
-    if (totalOptions === 2) {
-        barValue.textContent = "WEAK";
-        [strengthBars[0], strengthBars[1]].forEach((el) => {
-            el.classList.remove("strength-bar-empty");
-            el.classList.add("bg-orange");
-        });
-    }
+    let totalOptions = 0;
 
-    if (totalOptions === 3) {
-        barValue.textContent = "MEDIUM";
-        [strengthBars[0], strengthBars[1], strengthBars[2]].forEach((el) => {
-            el.classList.remove("strength-bar-empty");
-            el.classList.add("bg-yellow");
-        });
-    }
+    const options = {
+        uppercase: checkBoxUppercase.checked,
+        lowercase: checkBoxLowercase.checked,
+        numbers: checkBoxNumbers.checked,
+        symbols: checkBoxSymbols.checked,
+    };
 
-    if (totalOptions === 4) {
-        barValue.textContent = "STRONG";
-        [
-            strengthBars[0],
-            strengthBars[1],
-            strengthBars[2],
-            strengthBars[3],
-        ].forEach((el) => {
-            el.classList.remove("strength-bar-empty");
-            el.classList.add("bg-green");
-        });
+    //  Get the total number of enabled options
+    Object.keys(options).forEach((key) => {
+        if (options[key]) totalOptions++;
+    });
+
+    // Reset the bar style to empty
+    resetBar();
+
+    //  Add the style to the bar
+    for (let i = 0; i < totalOptions; i++) {
+        strengthBars[i].classList.remove("strength-bar-empty");
+        if (totalOptions === 1) {
+            strengthBars[i].classList.add("bg-red");
+            barValue.textContent = "TOO WEAK!";
+        }
+        if (totalOptions === 2) {
+            strengthBars[i].classList.add("bg-orange");
+            barValue.textContent = "WEAK";
+        }
+        if (totalOptions === 3) {
+            strengthBars[i].classList.add("bg-yellow");
+            barValue.textContent = "MEDIUM";
+        }
+        if (totalOptions === 4) {
+            strengthBars[i].classList.add("bg-green");
+            barValue.textContent = "STRONG";
+        }
     }
 };
 
@@ -153,57 +132,30 @@ generateButton.addEventListener("click", (event) => {
     generatePassword();
     generateSecurityBar();
 });
-//add an event listener that check if the password length is 0 and disable the generate button if it is
-passwordLengthSlider.addEventListener("input", (event) => {
-    if (
-        passwordLengthSlider.value === "0" &&
-        !checkBoxLowercase.checked &&
-        !checkBoxUppercase.checked &&
-        !checkBoxNumbers.checked &&
-        !checkBoxSymbols.checked
-    ) {
-        generateButton.disabled = true;
-        generateButton.classList.add("disabled");
-    } else if (
-        passwordLengthSlider.value !== "0" &&
-        (checkBoxLowercase.checked ||
-            checkBoxUppercase.checked ||
-            checkBoxNumbers.checked ||
-            checkBoxSymbols.checked)
-    ) {
-        generateButton.disabled = false;
-        generateButton.classList.remove("disabled");
-    } else if (
-        passwordLengthSlider.value === "0" &&
-        (checkBoxLowercase.checked ||
-            checkBoxUppercase.checked ||
-            checkBoxNumbers.checked ||
-            checkBoxSymbols.checked)
-    ) {
-        generateButton.disabled = true;
-        generateButton.classList.add("disabled");
-    }
-});
 
-//add an event listener that check if at least one checkbox is checked and disable the generate button if it is not
-checkboxes.forEach((checkbox) => {
-    checkbox.addEventListener("change", (event) => {
+// Add the event listener to the body
+document.body.addEventListener("change", (event) => {
+    //enable the generate button if at least one checkbox is checked
+    generateButton.disabled = true;
+    generateButton.classList.add("disabled");
+
+    checkboxes.forEach((checkbox) => {
         if (
-            !checkBoxLowercase.checked &&
-            !checkBoxUppercase.checked &&
-            !checkBoxNumbers.checked &&
-            !checkBoxSymbols.checked &&
-            passwordLengthSlider.value !== "0"
+            checkbox.checked === true &&
+            passwordLengthValue.textContent > "0"
         ) {
-            generateButton.disabled = true;
-            generateButton.classList.add("disabled");
+            generateButton.disabled = false;
+            generateButton.classList.remove("disabled");
         }
     });
+    //disable the generate button if no checkbox is checked
+});
+
+checkboxes.forEach((checkbox) => {
+    checkbox.checked = false;
 });
 
 generateButton.disabled = true;
 generateButton.classList.add("disabled");
-passwordLengthValue.textContent = passwordLengthSlider.value;
 
-// TODO: Add the background color to the slider when the value is different from 0
-// TODO: Change the style of the password text when the password is generated | or change the default style when not generated
+passwordLengthValue.textContent = passwordLengthSlider.value;
