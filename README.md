@@ -35,7 +35,7 @@ Users should be able to:
 ### Links
 
 -   Solution URL: [https://github.com/labihi/password-generator-web-app]
--   Live Site URL: [https://labihi.com/password-generator-web-app/]
+-   Live Site URL: [https://kaleidoscopic-raindrop-742190.netlify.app/]
 
 ## My process
 
