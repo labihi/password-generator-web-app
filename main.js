@@ -155,7 +155,9 @@ checkboxes.forEach((checkbox) => {
     checkbox.checked = false;
 });
 
-generateButton.disabled = true;
-generateButton.classList.add("disabled");
+window.onload = () => {
+    generateButton.disabled = true;
+    generateButton.classList.add("disabled");
 
-passwordLengthValue.textContent = passwordLengthSlider.value;
+    passwordLengthValue.textContent = passwordLengthSlider.value;
+};
