@@ -52,8 +52,6 @@ Users should be able to:
 I learnt how to position elements in a proper way by following closely the designs in the provided files.
 I also learnt how to style elements like range input and checkboxes, which are hard to style.
 
-To see how you can add code snippets, see below:
-
 ### Continued development
 
 I will work into improving the style of my solution and use it as a base to learn how to write tests and use a frontend framework and a css framework like tailwind as well.
