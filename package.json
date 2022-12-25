@@ -4,8 +4,10 @@
     "description": "This is a solution to the [Password generator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/password-generator-app-Mr8CLycqjh). Frontend Mentor challenges help you improve your coding skills by building realistic projects.",
     "main": "main.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "vite"
+        "test": "vitest",
+        "coverage": "vitest run --coverage",
+        "dev": "vite",
+        "build": "vite build"
     },
     "repository": {
         "type": "git",
@@ -20,5 +22,8 @@
     "homepage": "https://github.com/labihi/password-generator-web-app#readme",
     "dependencies": {
         "vite": "^4.0.3"
+    },
+    "devDependencies": {
+        "vitest": "^0.26.2"
     }
 }
