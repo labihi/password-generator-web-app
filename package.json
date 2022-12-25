@@ -1,0 +1,24 @@
+{
+    "name": "password-generator-app",
+    "version": "1.0.0",
+    "description": "This is a solution to the [Password generator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/password-generator-app-Mr8CLycqjh). Frontend Mentor challenges help you improve your coding skills by building realistic projects.",
+    "main": "main.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "vite"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/labihi/password-generator-web-app.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/labihi/password-generator-web-app/issues"
+    },
+    "homepage": "https://github.com/labihi/password-generator-web-app#readme",
+    "dependencies": {
+        "vite": "^4.0.3"
+    }
+}
