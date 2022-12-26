@@ -17,3 +17,6 @@
 
 # Avoid node-modules
 **node_modules
+
+# Avoid dist
+dist/
