@@ -21,6 +21,7 @@
     },
     "homepage": "https://github.com/labihi/password-generator-web-app#readme",
     "dependencies": {
+        "jsdom": "^20.0.3",
         "vite": "^4.0.3"
     },
     "devDependencies": {
