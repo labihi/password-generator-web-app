@@ -1,3 +1,6 @@
+import { resetBar } from "./utils/utils";
+import { getRandomCharFromString } from "./utils/utils";
+
 //  Add the selectors
 const copyButton = document.querySelector("#copy-button");
 const passwordLengthSlider = document.querySelector("#password-length-slider");
@@ -26,16 +29,6 @@ copyButton.addEventListener("click", (event) => {
     navigator.clipboard.writeText(passwordTextEl.textContent);
 });
 
-const resetBar = () => {
-    strengthBars.forEach((el) => {
-        el.classList.remove("bg-red");
-        el.classList.remove("bg-orange");
-        el.classList.remove("bg-yellow");
-        el.classList.remove("bg-green");
-        el.classList.add("strength-bar-empty");
-    });
-};
-
 const generateSecurityBar = (
     options = {
         uppercase,
@@ -52,7 +45,7 @@ const generateSecurityBar = (
     });
 
     // Reset the bar style to empty
-    resetBar();
+    resetBar(strengthBars);
 
     //  Add the style to the bar
     for (let i = 0; i < totalOptions; i++) {
@@ -75,9 +68,6 @@ const generateSecurityBar = (
         }
     }
 };
-
-const getRandomCharFromString = (str) =>
-    str.charAt(Math.floor(Math.random() * str.length));
 
 //  Generate a random password with the given length and options
 const generatePassword = (
