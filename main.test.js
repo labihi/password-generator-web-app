@@ -100,4 +100,9 @@ describe("generate a random character", () => {
         const randomCharacter = getRandomCharFromString(1);
         expect(randomCharacter).toBe(undefined);
     });
+
+    test("should fail if empty string", () => {
+        const randomCharacter = getRandomCharFromString("");
+        expect(randomCharacter).toBe(undefined);
+    });
 });
