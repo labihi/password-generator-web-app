@@ -13,5 +13,8 @@ export const resetBar = (strengthBars) => {
 };
 
 // Function to generate a random character from a pool of characters
-export const getRandomCharFromString = (str) =>
-    str.charAt(Math.floor(Math.random() * str.length));
+export const getRandomCharFromString = (str) => {
+    if (!str) return;
+    if (typeof str !== "string") return;
+    return str.charAt(Math.floor(Math.random() * str.length));
+};
