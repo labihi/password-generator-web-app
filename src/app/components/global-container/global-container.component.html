@@ -1,0 +1,121 @@
+<div class="container bg-dark_grey">
+  <div class="header text-light_grey">Password Generator</div>
+  <div class="password-display text-almost_white">
+    <div id="password-text"><span>PTx1f5DaFX</span></div>
+    <div>
+      <i
+        id="copy-button"
+        class="far fa-copy text-neon-green copy-icon"
+      ></i>
+    </div>
+  </div>
+  <div class="password-settings text-almost-white">
+    <div class="length-container">
+      <div class="character-count-header">
+        <p>Character Length</p>
+        <p
+          id="password-length-value"
+          class="text-neon-green"
+        ></p>
+      </div>
+      <input
+        type="range"
+        min="0"
+        max="128"
+        value="0"
+        class="slider"
+        id="password-length-slider"
+      />
+    </div>
+    <div class="checkboxes-container">
+      <div>
+        <label class="checkbox-container"
+        >Include Uppercase Letters
+          <input
+            type="checkbox"
+            checked="checked"
+            class="checkbox"
+            id="uppercase"
+            name="uppercase"
+            value="UPPERCASE"
+          />
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div>
+        <label class="checkbox-container"
+        >Include Lowercase Letters
+          <input
+            type="checkbox"
+            checked="checked"
+            class="checkbox"
+            id="lowercase"
+            name="lowercase"
+            value="LOWERCASE"
+          />
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div>
+        <label class="checkbox-container"
+        >Include Numbers
+          <input
+            type="checkbox"
+            checked="checked"
+            class="checkbox"
+            id="numbers"
+            name="numbers"
+            value="NUMBERS"
+          />
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div>
+        <label class="checkbox-container"
+        >Include Symbols
+          <input
+            type="checkbox"
+            checked="checked"
+            class="checkbox"
+            id="symbols"
+            name="symbols"
+            value="SYMBOLS"
+          />
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </div>
+    <div class="strength-container">
+      <p>STRENGTH</p>
+      <div class="bar-value-container">
+        <div id="bar-value" class="bar-value"></div>
+        <div class="strength-bar-container">
+          <div class="strength-bar strength-bar-empty"></div>
+          <div class="strength-bar strength-bar-empty"></div>
+          <div class="strength-bar strength-bar-empty"></div>
+          <div class="strength-bar strength-bar-empty"></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button
+        class="generate-button font-body"
+        id="generate-button"
+      >
+        GENERATE
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1em"
+          height="1em"
+          preserveAspectRatio="xMidYMid meet"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="currentColor"
+            d="m12 20l-1.425-1.4l5.6-5.6H4v-2h12.175l-5.6-5.6L12 4l8 8Z"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
