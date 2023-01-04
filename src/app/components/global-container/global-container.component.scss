@@ -1,0 +1,153 @@
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  color: var(--light-grey);
+}
+
+.password-display {
+  background-color: var(--dark-grey);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 42px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+#password-text {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 80%; /* some width */
+}
+
+.copy-icon {
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.password-settings {
+  background-color: var(--dark-grey);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.length-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.character-count-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  height: 40px;
+}
+
+#password-length-value {
+  font-size: 32px;
+}
+
+.checkboxes-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.strength-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--very-dark-grey);
+  padding: 5px 20px;
+}
+
+.strength-bar-container {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.strength-bar {
+  height: 30px;
+  width: 10px;
+}
+
+.bg-yellow {
+  background-color: var(--yellow-medium);
+}
+
+.bg-orange {
+  background-color: var(--orange-weak);
+}
+
+.bg-red {
+  background-color: var(--red-too-weak);
+}
+
+.bg-green {
+  background-color: var(--neon-green-strong);
+}
+
+.strength-bar-empty {
+  box-sizing: border-box;
+  background-color: var(--very-dark-grey);
+  border: 2px solid var(--almost-white);
+}
+
+.bar-value-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.bar-value {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.generate-button {
+  background-color: var(--neon-green-strong);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  border: 2px solid none;
+  padding: 20px 20px;
+  width: 100%;
+  color: var(--very-dark-grey);
+}
+
+.font-body {
+  font-family: "JetBrains Mono";
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 23px;
+}
+
+.generate-button:hover:enabled {
+  box-sizing: border-box;
+  background-color: var(--dark-grey);
+  color: var(--neon-green-strong);
+  border: 2px solid var(--neon-green-strong);
+}
+
+.copy-icon:hover {
+  color: var(--almost-white);
+}
