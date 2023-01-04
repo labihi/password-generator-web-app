@@ -3,3 +3,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("./assets/fonts/JetBrainsMono-VariableFont_wght.ttf")
+  format("truetype");
+  font-style: normal;
+}
+
+body {
+  font-family: "JetBrains Mono", serif;
+}
