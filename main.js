@@ -1,5 +1,6 @@
 import { resetBar } from "./utils/utils";
 import { getRandomCharFromString } from "./utils/utils";
+import { generatePassword } from "./utils/utils";
 
 //  Add the selectors
 const copyButton = document.querySelector("#copy-button");
@@ -69,46 +70,6 @@ const generateSecurityBar = (
     }
 };
 
-//  Generate a random password with the given length and options
-const generatePassword = (
-    options = {
-        length,
-        uppercase,
-        lowercase,
-        numbers,
-        symbols,
-    }
-) => {
-    // Get the options from the checkboxes
-
-    let pwd = "";
-
-    for (let i = 0; i < options.length; i++) {
-        if (
-            options.lowercase &&
-            options.uppercase &&
-            options.numbers &&
-            options.symbols
-        )
-            pwd += getRandomCharFromString(Object.values(Allowed).join(""));
-        else {
-            // Destructure the Allowed object in order to get the allowed characters
-            const { Uppers, Lowers, Numbers, Symbols } = Allowed;
-            let allowedChars = "";
-            // Add the allowed characters to the allowedChars string
-            if (options.uppercase) allowedChars += Uppers;
-            if (options.lowercase) allowedChars += Lowers;
-            if (options.numbers) allowedChars += Numbers;
-            if (options.symbols) allowedChars += Symbols;
-            // Add a random character from the allowedChars string to the password
-            pwd += getRandomCharFromString(allowedChars);
-        }
-    }
-
-    // Display the password
-    document.querySelector("#password-text").textContent = pwd;
-};
-
 passwordLengthSlider.addEventListener("input", (event) => {
     passwordLengthValue.textContent = event.target.value;
 });
@@ -123,7 +84,8 @@ generateButton.addEventListener("click", (event) => {
         symbols: checkBoxSymbols.checked,
     };
 
-    generatePassword({ length, ...options });
+    const pwdText = generatePassword({ length, ...options });
+    document.querySelector("#password-text").textContent = pwdText;
     generateSecurityBar(options, length);
 });
 
