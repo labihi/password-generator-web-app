@@ -1,6 +1,10 @@
 import { afterEach, beforeEach, describe, test, vi, skip } from "vitest";
 import { expect } from "vitest";
-import { resetBar, getRandomCharFromString } from "./utils/utils";
+import {
+    resetBar,
+    getRandomCharFromString,
+    generatePassword,
+} from "./utils/utils";
 
 // describe.skip("testableFunction", () => {
 //     afterEach(() => {
@@ -104,5 +108,70 @@ describe("generate a random character", () => {
     test("should fail if empty string", () => {
         const randomCharacter = getRandomCharFromString("");
         expect(randomCharacter).toBe(undefined);
+    });
+});
+
+describe("generate a random password", () => {
+    test("should return an uppercase only password", () => {
+        const randomPassword = generatePassword({
+            length: 10,
+            uppercase: true,
+            lowercase: false,
+            numbers: false,
+            symbols: false,
+        });
+        expect(randomPassword).toMatch(/[A-Z]/);
+        expect(randomPassword).length(10);
+    });
+
+    test("should return a lowercase only password", () => {
+        const randomPassword = generatePassword({
+            length: 10,
+            uppercase: false,
+            lowercase: true,
+            numbers: false,
+            symbols: false,
+        });
+        expect(randomPassword).toMatch(/[a-z]/);
+        expect(randomPassword).length(10);
+    });
+
+    test("should return a number only password", () => {
+        const randomPassword = generatePassword({
+            length: 10,
+            uppercase: false,
+            lowercase: false,
+            numbers: true,
+            symbols: false,
+        });
+        expect(randomPassword).toMatch(/[0-9]/);
+        expect(randomPassword).length(10);
+    });
+
+    test("should return a symbol only password", () => {
+        const randomPassword = generatePassword({
+            length: 10,
+            uppercase: false,
+            lowercase: false,
+            numbers: false,
+            symbols: true,
+        });
+        expect(randomPassword).toMatch(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/);
+        expect(randomPassword).length(10);
+    });
+
+    test("should return a mixed password", () => {
+        const randomPassword = generatePassword({
+            length: 10,
+            uppercase: true,
+            lowercase: true,
+            numbers: true,
+            symbols: true,
+        });
+        expect(randomPassword).toMatch(/[A-Z]/);
+        expect(randomPassword).toMatch(/[a-z]/);
+        expect(randomPassword).toMatch(/[0-9]/);
+        expect(randomPassword).toMatch(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/);
+        expect(randomPassword).length(10);
     });
 });
