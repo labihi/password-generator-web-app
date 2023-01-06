@@ -16,7 +16,7 @@
         <p
           id="password-length-value"
           class="text-neon_green_strong"
-        ></p>
+        >{{passwordLengthValueText}}</p>
       </div>
       <input
         type="range"
@@ -25,6 +25,7 @@
         value="0"
         class="slider"
         id="password-length-slider"
+        (change)="changePasswordLength($event)"
       />
     </div>
     <div class="checkboxes-container">
@@ -38,6 +39,7 @@
             id="uppercase"
             name="uppercase"
             value="UPPERCASE"
+            [ngModel]="uppercase"
           />
           <span class="checkmark"></span>
         </label>
@@ -52,6 +54,7 @@
             id="lowercase"
             name="lowercase"
             value="LOWERCASE"
+            [ngModel]="lowercase"
           />
           <span class="checkmark"></span>
         </label>
@@ -66,6 +69,7 @@
             id="numbers"
             name="numbers"
             value="NUMBERS"
+            [ngModel]="numbers"
           />
           <span class="checkmark"></span>
         </label>
@@ -80,6 +84,7 @@
             id="symbols"
             name="symbols"
             value="SYMBOLS"
+            [ngModel]="symbols"
           />
           <span class="checkmark"></span>
         </label>
@@ -88,12 +93,30 @@
     <div class="strength-container bg-very_dark_grey">
       <p>STRENGTH</p>
       <div class="bar-value-container">
-        <div id="bar-value" class="bar-value"></div>
+        <div id="bar-value" class="bar-value">{{textBarValue}}</div>
         <div class="strength-bar-container">
-          <div class="strength-bar strength-bar-empty"></div>
-          <div class="strength-bar strength-bar-empty"></div>
-          <div class="strength-bar strength-bar-empty"></div>
-          <div class="strength-bar strength-bar-empty"></div>
+          <div class="strength-bar strength-bar-empty"
+               [ngClass]="{
+                'bg-red': totalOptions == 1,
+                'bg-orange': totalOptions == 2,
+                'bg-yellow': totalOptions == 3,
+                'bg-green': totalOptions == 4
+          }"></div>
+          <div class="strength-bar strength-bar-empty"
+               [ngClass]="{
+                'bg-orange': totalOptions == 2,
+                'bg-yellow': totalOptions == 3,
+                'bg-green': totalOptions == 4
+          }"></div>
+          <div class="strength-bar strength-bar-empty"
+                [ngClass]="{
+                  'bg-yellow': totalOptions == 3,
+                  'bg-green': totalOptions == 4
+          }"></div>
+          <div class="strength-bar strength-bar-empty"
+                [ngClass]="{
+                  'bg-green': totalOptions == 4
+          }"></div>
         </div>
       </div>
     </div>
@@ -101,6 +124,9 @@
       <button
         class="generate-button font-body"
         id="generate-button"
+        (click)="generateAll()"
+        [ngClass]="{disabled: totalOptions == 0}"
+        [disabled]="shoudlDisableGenerateButton()"
       >
         GENERATE
         <svg
