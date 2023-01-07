@@ -1,45 +1,29 @@
 <div class="flex flex-col gap-6">
   <div class="header text-light_grey">Password Generator</div>
   <div class="password-display bg-dark_grey text-almost_white">
-    <div id="password-text"><span>PTx1f5DaFX</span></div>
+    <div id="password-text"><span>{{generatedPassword || "PTx1f5DaFX"}}</span></div>
     <div>
       <i
         id="copy-button"
         class="far fa-copy text-neon_green_strong copy-icon"
+        (click)="copyToClipboard()"
       ></i>
     </div>
   </div>
   <div class="password-settings bg-dark_grey text-almost_white">
-    <div class="length-container">
-      <div class="character-count-header">
-        <p>Character Length</p>
-        <p
-          id="password-length-value"
-          class="text-neon_green_strong"
-        >{{passwordLengthValueText}}</p>
-      </div>
-      <input
-        type="range"
-        min="0"
-        max="128"
-        value="0"
-        class="slider"
-        id="password-length-slider"
-        (change)="changePasswordLength($event)"
-      />
-    </div>
+    <app-password-length-slider (emitPasswordLength)="onEmit($event)"></app-password-length-slider>
     <div class="checkboxes-container">
       <div>
         <label class="checkbox-container"
         >Include Uppercase Letters
           <input
             type="checkbox"
-            checked="checked"
             class="checkbox"
             id="uppercase"
             name="uppercase"
             value="UPPERCASE"
-            [ngModel]="uppercase"
+            [(ngModel)]="uppercase"
+            (change)="updateTotalOptions()"
           />
           <span class="checkmark"></span>
         </label>
@@ -54,7 +38,8 @@
             id="lowercase"
             name="lowercase"
             value="LOWERCASE"
-            [ngModel]="lowercase"
+            [(ngModel)]="lowercase"
+            (change)="updateTotalOptions()"
           />
           <span class="checkmark"></span>
         </label>
@@ -69,7 +54,8 @@
             id="numbers"
             name="numbers"
             value="NUMBERS"
-            [ngModel]="numbers"
+            [(ngModel)]="numbers"
+            (change)="updateTotalOptions()"
           />
           <span class="checkmark"></span>
         </label>
@@ -84,37 +70,42 @@
             id="symbols"
             name="symbols"
             value="SYMBOLS"
-            [ngModel]="symbols"
+            [(ngModel)]="symbols"
+            (change)="updateTotalOptions()"
           />
           <span class="checkmark"></span>
         </label>
       </div>
     </div>
-    <div class="strength-container bg-very_dark_grey">
+    <div class="flex justify-between items-center p-3 bg-very_dark_grey">
       <p>STRENGTH</p>
       <div class="bar-value-container">
-        <div id="bar-value" class="bar-value">{{textBarValue}}</div>
+        <div id="bar-value" class="bar-value" >{{textBarValue}}</div>
         <div class="strength-bar-container">
-          <div class="strength-bar strength-bar-empty"
+          <div class="strength-bar"
                [ngClass]="{
+                'strength-bar-empty': totalOptions == 0,
                 'bg-red': totalOptions == 1,
                 'bg-orange': totalOptions == 2,
                 'bg-yellow': totalOptions == 3,
                 'bg-green': totalOptions == 4
           }"></div>
-          <div class="strength-bar strength-bar-empty"
+          <div class="strength-bar "
                [ngClass]="{
+                'strength-bar-empty': totalOptions == 0 || totalOptions == 1,
                 'bg-orange': totalOptions == 2,
                 'bg-yellow': totalOptions == 3,
                 'bg-green': totalOptions == 4
           }"></div>
-          <div class="strength-bar strength-bar-empty"
+          <div class="strength-bar"
                 [ngClass]="{
+                  'strength-bar-empty': totalOptions == 0 || totalOptions == 1 || totalOptions == 2,
                   'bg-yellow': totalOptions == 3,
                   'bg-green': totalOptions == 4
           }"></div>
-          <div class="strength-bar strength-bar-empty"
+          <div class="strength-bar"
                 [ngClass]="{
+                  'strength-bar-empty': totalOptions == 0 || totalOptions == 1 || totalOptions == 2 || totalOptions == 3,
                   'bg-green': totalOptions == 4
           }"></div>
         </div>
@@ -125,8 +116,8 @@
         class="generate-button font-body"
         id="generate-button"
         (click)="generateAll()"
-        [ngClass]="{disabled: totalOptions == 0}"
-        [disabled]="shoudlDisableGenerateButton()"
+        [ngClass]="{disabled: shouldDisableGenerateButton()}"
+        [disabled]="shouldDisableGenerateButton()"
       >
         GENERATE
         <svg

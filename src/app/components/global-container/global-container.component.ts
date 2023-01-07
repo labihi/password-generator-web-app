@@ -1,16 +1,18 @@
-import { Component } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-global-container',
   templateUrl: './global-container.component.html',
   styleUrls: ['./global-container.component.scss']
 })
-export class GlobalContainerComponent {
+export class GlobalContainerComponent implements OnInit{
 
   uppercase: string = '';
   lowercase: string = '';
   numbers: string = '';
   symbols: string = '';
+
+  passwordLength: string = '';
 
   Allowed = {
     Uppers: "QWERTYUIOPASDFGHJKLZXCVBNM",
@@ -20,11 +22,23 @@ export class GlobalContainerComponent {
   };
 
   textBarValue: string = '';
-  passwordLengthValueText: string = '';
 
   totalOptions = 0;
+  generatedPassword: string = "";
+
+
+
+  constructor() {
+  }
+
+  ngOnInit() {
+  }
+
+
 
   generateAll() {
+    console.log(length);
+    length = parseInt(this.passwordLength);
 
     const options = {
       uppercase: this.uppercase,
@@ -69,10 +83,12 @@ export class GlobalContainerComponent {
         pwd += this.getRandomCharFromString(allowedChars);
       }
     }
+
+    this.generatedPassword = pwd;
   }
 
   private getRandomCharFromString(str: string) {
-    return str.charAt(Math.floor(Math.random() * str.length));;
+    return str.charAt(Math.floor(Math.random() * str.length));
   }
 
   private generateSecurityBar(
@@ -82,13 +98,14 @@ export class GlobalContainerComponent {
       numbers: string;
       symbols: string
     }, length: number) {
+    console.log(options);
 
     this.totalOptions = 0;
 
     //  Get the total number of enabled options
-    Object.keys(options).forEach((key) => {
-      if (options[key as keyof typeof options]) this.totalOptions++;
-    });
+    this.updateTotalOptions();
+
+    console.log("TOTOPT: ",this.totalOptions);
 
     //  Add the style to the bar
     switch (this.totalOptions) {
@@ -110,11 +127,25 @@ export class GlobalContainerComponent {
     }
   }
 
-  changePasswordLength($event: Event) {
-    this.passwordLengthValueText = ($event.target as HTMLInputElement).value;
+
+  shouldDisableGenerateButton() {
+    return this.totalOptions === 0 || this.passwordLength === '' || this.passwordLength === '0';
   }
 
-  shoudlDisableGenerateButton() {
-    return this.totalOptions === 0;
+  updateTotalOptions() {
+    this.totalOptions = 0;
+    if(this.uppercase) this.totalOptions++;
+    if(this.lowercase) this.totalOptions++;
+    if(this.numbers) this.totalOptions++;
+    if(this.symbols) this.totalOptions++;
+  }
+
+  onEmit($event: string) {
+    console.log("PW LENGTH: ", $event);
+    this.passwordLength = $event;
+  }
+
+  copyToClipboard() {
+    navigator.clipboard.writeText(this.generatedPassword);
   }
 }
