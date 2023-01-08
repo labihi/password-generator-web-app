@@ -1,0 +1,30 @@
+.generate-button {
+  background-color: theme('colors.neon_green_strong');
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  border: 2px solid theme('colors.neon_green_strong');
+  padding: 20px 20px;
+  width: 100%;
+  color: theme('colors.very_dark_grey');
+}
+
+.font-body {
+  font-family: "JetBrains Mono", serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 23px;
+}
+
+.generate-button:hover:enabled {
+  box-sizing: border-box;
+  background-color: theme('colors.dark_grey');
+  color: theme('colors.neon_green_strong');
+  border: 2px solid theme('colors.neon_green_strong');
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

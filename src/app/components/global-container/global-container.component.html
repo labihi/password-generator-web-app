@@ -83,7 +83,7 @@
                 'bg-yellow': totalOptions == 3,
                 'bg-green': totalOptions == 4
           }"></div>
-          <div class="strength-bar "
+          <div class="strength-bar"
                [ngClass]="{
                 'strength-bar-empty': totalOptions == 0 || totalOptions == 1,
                 'bg-orange': totalOptions == 2,
@@ -105,27 +105,7 @@
       </div>
     </div>
     <div>
-      <button
-        class="generate-button font-body"
-        id="generate-button"
-        (click)="generateAll()"
-        [ngClass]="{disabled: shouldDisableGenerateButton()}"
-        [disabled]="shouldDisableGenerateButton()"
-      >
-        GENERATE
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="1em"
-          height="1em"
-          preserveAspectRatio="xMidYMid meet"
-          viewBox="0 0 24 24"
-        >
-          <path
-            fill="currentColor"
-            d="m12 20l-1.425-1.4l5.6-5.6H4v-2h12.175l-5.6-5.6L12 4l8 8Z"
-          />
-        </svg>
-      </button>
+      <app-custom-generate-button (emitClick)="generateAll()" [disabled]="shouldDisableGenerateButton()"></app-custom-generate-button>
     </div>
   </div>
 </div>
