@@ -145,7 +145,5 @@ export class GlobalContainerComponent implements OnInit{
     this.passwordLength = $event;
   }
 
-  copyToClipboard() {
-    navigator.clipboard.writeText(this.generatedPassword);
-  }
+
 }

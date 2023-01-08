@@ -1,14 +1,7 @@
 <div class="flex flex-col gap-6">
   <div class="header text-light_grey">Password Generator</div>
   <div class="password-display bg-dark_grey text-almost_white">
-    <div id="password-text"><span>{{generatedPassword || "PTx1f5DaFX"}}</span></div>
-    <div>
-      <i
-        id="copy-button"
-        class="far fa-copy text-neon_green_strong copy-icon"
-        (click)="copyToClipboard()"
-      ></i>
-    </div>
+    <app-password-show-and-copy class="w-full" [generatedPassword]="generatedPassword"></app-password-show-and-copy>
   </div>
   <div class="password-settings bg-dark_grey text-almost_white">
     <app-password-length-slider (emitPasswordLength)="onEmit($event)"></app-password-length-slider>
